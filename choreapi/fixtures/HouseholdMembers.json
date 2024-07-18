@@ -1,0 +1,18 @@
+[
+    {
+        "model": "choreapi.householdMember",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "household": 1
+        }
+    },
+    {
+        "model": "choreapi.householdMember",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "household": 1
+        }
+    }
+]

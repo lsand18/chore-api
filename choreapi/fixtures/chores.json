@@ -1,0 +1,54 @@
+[
+{
+    "model": "choreapi.chore",
+    "pk": 1,
+    "fields": {
+        "name": "Feed the Dog",
+        "frequency": 1,
+        "household": 1,
+        "feed": 1,
+        "complete": false,
+        "user": null
+
+    }
+},
+{
+    "model": "choreapi.chore",
+    "pk": 2,
+    "fields": {
+        "name": "Feed the Chickens",
+        "frequency": 1,
+        "household": 1,
+        "feed": 2,
+        "complete": false,
+        "user": null
+
+    }
+},
+{
+    "model": "choreapi.chore",
+    "pk": 3,
+    "fields": {
+        "name": "Clean the Water Buckets",
+        "frequency": 1,
+        "household": 1,
+        "feed": null,
+        "complete": true,
+        "user": 2
+
+    }
+},
+{
+    "model": "choreapi.chore",
+    "pk": 3,
+    "fields": {
+        "name": "Water the Ferns",
+        "frequency": 1,
+        "household": 1,
+        "feed": null,
+        "complete": true,
+        "user": 1
+
+    }
+}
+]
