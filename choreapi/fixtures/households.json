@@ -4,14 +4,14 @@
     "model": "choreapi.household",
     "pk": 1,
     "fields": {
-        "title": "The Farm"
+        "name": "The Farm"
     }
 },
 {
     "model": "choreapi.household",
     "pk": 2,
     "fields": {
-        "title": "The Farm Next Door"
+        "name": "The Farm Next Door"
     }
 }
 ]

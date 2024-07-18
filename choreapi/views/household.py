@@ -15,4 +15,8 @@ class HouseholdView(ViewSet):
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
     
-    def list
+
+class HouseholdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Household
+        fields = ('name',)
