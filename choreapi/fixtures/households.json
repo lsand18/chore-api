@@ -1,0 +1,17 @@
+
+[
+    {
+    "model": "choreapi.household",
+    "pk": 1,
+    "fields": {
+        "title": "The Farm"
+    }
+},
+{
+    "model": "choreapi.household",
+    "pk": 2,
+    "fields": {
+        "title": "The Farm Next Door"
+    }
+}
+]
