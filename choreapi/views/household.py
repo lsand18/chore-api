@@ -2,7 +2,7 @@ from django.http import HttpResponseServerError
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
-from choreapi.models import Household
+from choreapi.models import Household, HouseholdMember
 
 class HouseholdView(ViewSet):
     def create(self, request):
@@ -15,8 +15,26 @@ class HouseholdView(ViewSet):
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
     
+    def list(self, request):
+        households = HouseholdMember.objects.filter(user=request.auth.user)
+        json_households = HouseholdMemberSerializer(
+            households, many=True, context={'request': request}
+        )
+        return Response(json_households.data)
+    
+    def retrieve(self, request, pk=None):
+        household = Household.objects.get(pk=pk)
+        json_household = HouseholdSerializer(household, many=False)
+        return Response(json_household.data)
+    
 
 class HouseholdSerializer(serializers.ModelSerializer):
     class Meta:
         model = Household
-        fields = ('name',)
+        fields = ('id','name',)
+
+class HouseholdMemberSerializer(serializers.ModelSerializer):
+    household = HouseholdSerializer(many=False)
+    class Meta:
+        model = HouseholdMember
+        fields = ('id', 'household')

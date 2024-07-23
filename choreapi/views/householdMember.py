@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class HouseholdMemberView(ViewSet):
     def create(self, request):
-
+# """ http://localhost:8000/householdmembers"""
 # TODO: create try/except so a member cannot be added to a household twice
         newMember = HouseholdMember()
         newMember.user = User.objects.get(pk = request.data['chosenId'])
