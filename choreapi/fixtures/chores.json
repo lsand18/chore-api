@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "name": "Feed the Dog",
-        "frequency": 1,
+        // "frequency": 1,
         "household": 1,
         "feed": 1,
         "complete": false,
@@ -17,7 +17,7 @@
     "pk": 2,
     "fields": {
         "name": "Feed the Chickens",
-        "frequency": 1,
+        // "frequency": 1,
         "household": 1,
         "feed": 2,
         "complete": false,
@@ -30,7 +30,7 @@
     "pk": 3,
     "fields": {
         "name": "Clean the Water Buckets",
-        "frequency": 1,
+        // "frequency": 1,
         "household": 1,
         "feed": null,
         "complete": true,
@@ -43,7 +43,7 @@
     "pk": 3,
     "fields": {
         "name": "Water the Ferns",
-        "frequency": 1,
+        // "frequency": 1,
         "household": 1,
         "feed": null,
         "complete": true,

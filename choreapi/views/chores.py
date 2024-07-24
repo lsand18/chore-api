@@ -9,6 +9,7 @@ class ChoresView(ViewSet):
 
         chore = Chore()
         chore.name = request.data['name']
+        chore.household = Household.objects.get(pk=request.data['householdId'])
         chore.save()
 
         serialized = ChoreSerializer(chore, many=False)
