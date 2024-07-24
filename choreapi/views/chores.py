@@ -26,6 +26,13 @@ class ChoresView(ViewSet):
         )
         return Response(json_chores.data)
     
+    # def list(self, request):
+    #     householdId = self.request.query_params.get('household', None)
+    #     chores = Chore.objects.filter(household=householdId)
+    #     json_chores = ChoreSerializer(
+    #         chores, many=True, context={'request': request}
+    #     )
+    #     return Response(json_chores.data)
 class ChoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chore
