@@ -18,6 +18,14 @@ class HouseholdMemberView(ViewSet):
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
     
+    def list(self, request):
+        householdId = self.request.query_params.get('household', None)
+        houseMembers = HouseholdMember.objects.filter(household=householdId)
+        json = HouseholdMemberSerializer(
+            houseMembers, many=True, context={'request': request}
+        )
+        return Response(json.data)
+    
     def destroy(self, request, pk=None):
         """ http://localhost:8000/householdmembers/pk"""
         try:
@@ -38,3 +46,4 @@ class HouseholdMemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = HouseholdMember
         fields = ('user','household')
+        depth = 2
