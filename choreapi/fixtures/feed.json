@@ -4,9 +4,8 @@
     "pk": 1,
     "fields": {
         "name": "Sadie Food",
-        "servingsLeft": 15,
-        "totalServings": 30,
-        "url": "www.chewy.com"
+        "url": "www.chewy.com",
+        "household": 1
     }
 },
 {
@@ -14,9 +13,8 @@
     "pk": 2,
     "fields": {
         "name": "Chicken Food",
-        "servingsLeft": 10,
-        "totalServings": 25,
-        "url": "www.tractorsupply.com"
+        "url": "www.tractorsupply.com",
+        "household": 1
     }
 }
 ]

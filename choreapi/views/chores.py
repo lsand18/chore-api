@@ -10,6 +10,8 @@ class ChoresView(ViewSet):
         chore = Chore()
         chore.name = request.data['name']
         chore.household = Household.objects.get(pk=request.data['householdId'])
+        if request.data['feedId']:
+            chore.feed = Feed.objects.get(pk=request.data['feedId'])
         chore.save()
 
         serialized = ChoreSerializer(chore, many=False)
@@ -71,4 +73,5 @@ class ChoresView(ViewSet):
 class ChoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chore
-        fields = ('id','name','complete')
+        fields = ('id','name','complete', 'feed')
+        depth = 2

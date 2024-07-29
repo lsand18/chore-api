@@ -45,5 +45,5 @@ class HouseholdMemberView(ViewSet):
 class HouseholdMemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = HouseholdMember
-        fields = ('user','household')
+        fields = ('id','user','household')
         depth = 2

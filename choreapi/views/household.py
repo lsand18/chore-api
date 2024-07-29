@@ -3,6 +3,7 @@ from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from choreapi.models import Household, HouseholdMember
+from django.contrib.auth.models import User
 
 class HouseholdView(ViewSet):
     def create(self, request):
@@ -10,6 +11,11 @@ class HouseholdView(ViewSet):
         household = Household()
         household.name = request.data['name']
         household.save()
+
+        newMember = HouseholdMember()
+        newMember.user = request.auth.user
+        newMember.household = household
+        newMember.save()
 
         serialized = HouseholdSerializer(household, many=False)
 
