@@ -9,12 +9,20 @@ class HouseholdMemberView(ViewSet):
     def create(self, request):
 # """ http://localhost:8000/householdmembers"""
 # TODO: create try/except so a member cannot be added to a household twice
-        newMember = HouseholdMember()
-        newMember.user = User.objects.get(pk = request.data['chosenId'])
-        newMember.household = Household.objects.get(pk = request.data['householdId'])
-        newMember.save()
+        # newMember = HouseholdMember()
+        # user_data = request.data.get('newMember', {})
+        # user_id = user_data.get('id')
+        # newMember.user = User.objects.get(pk = user_id)
+        # newMember.household = Household.objects.get(pk = request.data['householdId'])
+        # newMember.save()
 
-        serialized = HouseholdMemberSerializer(newMember, many=False)
+
+        household = Household.objects.get(pk = request.data['householdId'])
+        member_data = request.data.get('newMembers', [])
+        members = [HouseholdMember(user = User.objects.get(pk = member['id']), household = household) for member in member_data]
+        newMembers = HouseholdMember.objects.bulk_create(members)
+
+        serialized = HouseholdMemberSerializer(newMembers, many=True)
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
     

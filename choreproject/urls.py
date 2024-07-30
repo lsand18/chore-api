@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from choreapi.views import HouseholdView, HouseholdMemberView, register_user, login_user, ChoresView, FeedView
+from choreapi.views import HouseholdView, HouseholdMemberView, UserView, register_user, login_user, ChoresView, FeedView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'households', HouseholdView, 'household')
 router.register(r'householdmembers', HouseholdMemberView, 'householdMember')
 router.register(r'chores', ChoresView, 'chores' )
 router.register(r'feed', FeedView, 'feed' )
+router.register(r'users', UserView, 'users')
 
 urlpatterns = [
     path('', include(router.urls)),

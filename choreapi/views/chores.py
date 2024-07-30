@@ -12,6 +12,8 @@ class ChoresView(ViewSet):
         chore.household = Household.objects.get(pk=request.data['householdId'])
         if request.data['feedId']:
             chore.feed = Feed.objects.get(pk=request.data['feedId'])
+        else:
+            chore.feed = None
         chore.save()
 
         serialized = ChoreSerializer(chore, many=False)
@@ -36,8 +38,13 @@ class ChoresView(ViewSet):
         if request.data:
             chore = Chore.objects.get(pk=pk)
             chore.name = request.data["name"]
-            feed = Feed.objects.get(pk=request.data["feedId"])
-            chore.feed = feed
+            if request.data['feed']:
+                feed_data = request.data.get('feed', {})
+                feedId = feed_data.get('id')
+                feed = Feed.objects.get(pk=feedId)
+                chore.feed = feed
+            else: 
+                chore.feed = None
             chore.save()
 
             return Response({}, status=status.HTTP_204_NO_CONTENT)
@@ -73,5 +80,5 @@ class ChoresView(ViewSet):
 class ChoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chore
-        fields = ('id','name','complete', 'feed')
+        fields = ('id','name','complete', 'feed', 'user')
         depth = 2
