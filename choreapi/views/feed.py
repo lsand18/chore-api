@@ -26,9 +26,27 @@ class FeedView(ViewSet):
             feed, many=True, context={'request': request}
         )
         return Response(json_feed.data)
+    
+    def destroy(self, request, pk=None):
+        """Handle DELETE requests for a single payment type
+
+        Returns:
+            Response -- 200, 404, or 500 status code
+        """
+        try:
+            void = Feed.objects.get(pk=pk)
+            void.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except Feed.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
 
 class FeedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feed
-        fields = ('id','name',)
+        fields = ('id','name','url')
