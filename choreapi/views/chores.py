@@ -57,6 +57,9 @@ class ChoresView(ViewSet):
             else:
                 chore.user = request.auth.user
             chore.save()
+            feed = Feed.objects.get(pk = chore.feed.id)
+            feed.servingsLeft = feed.servingsLeft - 1
+            feed.save()
             return Response({}, status=status.HTTP_204_NO_CONTENT)
         
     def destroy(self, request, pk=None):

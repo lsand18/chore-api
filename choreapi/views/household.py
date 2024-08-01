@@ -24,12 +24,14 @@ class HouseholdView(ViewSet):
     def list(self, request):
         households = HouseholdMember.objects.filter(user=request.auth.user)
         json_households = HouseholdMemberSerializer(
-            households, many=True, context={'request': request}
-        )
+        households, many=True, context={'request': request})
         return Response(json_households.data)
     
     def retrieve(self, request, pk=None):
-        household = Household.objects.get(pk=pk)
+        try:
+            household = Household.objects.get(pk=pk)
+        except:
+            household = None
         json_household = HouseholdSerializer(household, many=False)
         return Response(json_household.data)
     

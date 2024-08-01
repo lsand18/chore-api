@@ -13,6 +13,8 @@ class FeedView(ViewSet):
         newFeed.name = request.data['name']
         newFeed.household = Household.objects.get(pk=request.data['householdId'])
         newFeed.url = request.data['url']
+        newFeed.totalServings = request.data['totalServings']
+        newFeed.servingsLeft = request.data['totalServings']
         newFeed.save()
 
         serialized = FeedSerializer(newFeed, many=False)
@@ -49,4 +51,4 @@ class FeedView(ViewSet):
 class FeedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feed
-        fields = ('id','name','url')
+        fields = ('id','name','url', 'servingsLeft')
